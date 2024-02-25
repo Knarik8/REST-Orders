@@ -1,6 +1,9 @@
 package org.example.servlet.dto;
 
+import org.example.model.Order;
+
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 public class IncomingItemDTO {
@@ -8,11 +11,13 @@ public class IncomingItemDTO {
     private String name;
 
     private BigDecimal price;
+    List<Order> orderList;
 
-    public IncomingItemDTO(int id, String name, BigDecimal price) {
+    public IncomingItemDTO(int id, String name, BigDecimal price, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.orderList = orders;
     }
 
     public int getId() {
@@ -39,6 +44,14 @@ public class IncomingItemDTO {
         this.price = price;
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,6 +71,7 @@ public class IncomingItemDTO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", orderList=" + orderList +
                 '}';
     }
 }

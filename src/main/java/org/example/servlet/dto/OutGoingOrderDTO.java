@@ -1,20 +1,23 @@
 package org.example.servlet.dto;
 
 import org.example.model.Customer;
+import org.example.model.Item;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class OutGoingOrderDTO {
     private int id;
     private Customer customer;
 
-
+    private List<Item> itemList;
     private Date date;
 
-    public OutGoingOrderDTO(int id, Customer customer, Date date) {
+    public OutGoingOrderDTO(int id, Customer customer, List<Item> items, Date date) {
         this.id = id;
         this.customer = customer;
+        this.itemList = items;
         this.date = date;
     }
 
@@ -43,6 +46,14 @@ public class OutGoingOrderDTO {
         this.date = date;
     }
 
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +72,7 @@ public class OutGoingOrderDTO {
         return "OutGoingOrderDTO{" +
                 "id=" + id +
                 ", customer=" + customer +
+                ", itemList=" + itemList +
                 ", date=" + date +
                 '}';
     }

@@ -3,6 +3,7 @@ package org.example.repository.mapper;
 import org.example.model.Customer;
 import org.example.model.Item;
 import org.example.model.Order;
+import org.example.repository.impl.CustomerRepositoryImpl;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -80,7 +81,8 @@ public class ResultSetMapperImpl implements ResultSetMapper {
         while (resultSet.next()) {
             Object orderId = resultSet.getObject("order_id");
             Date date = resultSet.getDate("order_date");
-            Customer customer = new Customer();
+            int customer_id = resultSet.getInt("customer_id");
+            Customer customer = CustomerRepositoryImpl.getInstance().findById(customer_id);
             order =  new Order((Integer)orderId, customer,  date);
         }
         return order;

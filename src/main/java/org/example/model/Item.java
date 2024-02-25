@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 public class Item {
@@ -8,6 +9,15 @@ public class Item {
     private String name;
 
     private BigDecimal price;
+
+    private List<Order> orderList;
+
+    public Item(int id, String name, BigDecimal price, List<Order> orderList) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.orderList = orderList;
+    }
 
     public Item(int id, String name, BigDecimal price) {
         this.id = id;
@@ -53,6 +63,13 @@ public class Item {
         this.price = price;
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -73,6 +90,7 @@ public class Item {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", orderList=" + orderList +
                 '}';
     }
 }

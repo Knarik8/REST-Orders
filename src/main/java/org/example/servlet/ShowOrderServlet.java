@@ -20,10 +20,12 @@ public class ShowOrderServlet extends GenericServlet{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        resp.setContentType("application/json");
+
         outGoingOrderDTO = orderDTOMapper.map(order);
-        jsonCustomer = objectMapper.writeValueAsString(outGoingOrderDTO);
+        jsonOrder = objectMapper.writeValueAsString(outGoingOrderDTO);
         PrintWriter out = resp.getWriter();
-        out.println(jsonCustomer);
+        out.println(jsonOrder);
 
     }
 }
