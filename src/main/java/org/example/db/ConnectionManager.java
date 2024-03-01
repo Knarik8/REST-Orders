@@ -1,7 +1,7 @@
 package org.example.db;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,7 +29,12 @@ public class ConnectionManager {
 
     private void loadProperties() throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileInputStream("C:/Users/armis/IdeaProjects/REST-Orders/src/main/resources/db.properties"));
+        try (InputStream inputStream = getClass().getResourceAsStream("/db.properties")){
+            properties.load(inputStream);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
         dbUrl = properties.getProperty("db.source.url");
         username = properties.getProperty("db.source.username");
         password = properties.getProperty("db.source.password");

@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Customer {
@@ -7,6 +8,15 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
+    private List<Order> orderList;
+
+    public Customer(Integer id, String firstName, String lastName, String email, List<Order> orders) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.orderList = orders;
+    }
 
     public Customer(Integer id, String firstName, String lastName, String email) {
         this.id = id;
@@ -57,12 +67,20 @@ public class Customer {
         this.email = email;
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id;
+        return Objects.equals(id, customer.id);
     }
 
     @Override
@@ -77,6 +95,7 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", orderList=" + orderList +
                 '}';
     }
 }

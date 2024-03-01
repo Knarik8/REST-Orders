@@ -49,9 +49,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from customers where id=?;");
             preparedStatement.setObject(1, id);
-
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -74,7 +72,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public Customer save(Customer customer) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO customers(first_name, last_name, email) VALUES(?,?,?)");
-//            preparedStatement.setInt(1, customer.getId());
             preparedStatement.setString(1, customer.getFirstName());
             preparedStatement.setString(2, customer.getLastName());
             preparedStatement.setString(3, customer.getEmail());
